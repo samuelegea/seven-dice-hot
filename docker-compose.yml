@@ -1,0 +1,76 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    restart: "no"
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgresdb:/var/lib/postgresql/data/
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/usr/src/app
+      - bundle:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    tty: true
+    depends_on:
+      - db
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: db
+      DEVISE_JWT_SECRET_KEY: 0Fbrnc09eYEBqFOOZHeD5to1dnyjpU3nVXHH4CRQ
+      REDIS_URL_SIDEKIQ: redis://redis:6379/1
+  js:
+    build: .
+    command: yarn build --watch
+    volumes:
+      - .:/usr/src/app
+      - bundle:/usr/local/bundle
+    tty: true
+    depends_on:
+      - web
+  css:
+    build: .
+    command: yarn build:css --watch
+    volumes:
+      - .:/usr/src/app
+      - bundle:/usr/local/bundle
+    tty: true
+    depends_on:
+      - web
+
+  # sidekiq:
+  #   container_name: sidekiq
+  #   build: ./api
+  #   command: bash -c "bundle exec sidekiq"
+  #   volumes:
+  #     - ./api:/api
+  #   depends_on:
+  #     - api
+  #   environment:
+  #     POSTGRES_USERNAME: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_HOST: db
+  #     DEVISE_JWT_SECRET_KEY: 0Fbrnc09eYEBqFOOZHeD5to1dnyjpU3nVXHH4CRQ
+  #     REDIS_URL_SIDEKIQ: redis://redis:6379/1
+  # redis:
+  #   container_name: redis
+  #   image: redis
+  #   restart: always
+  #   ports:
+  #     - "6379:6379"
+  #   command: redis-server
+  #   volumes:
+  # - redis:/data
+volumes:
+  # redis:
+  #   driver: local
+  postgresdb:
+  bundle:
