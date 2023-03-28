@@ -10,9 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_08_234745) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_212746) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "desc", null: false
+    t.integer "category", null: false
+    t.integer "weapon_category"
+    t.integer "weapon_range"
+    t.integer "cost_cp", null: false
+    t.string "damage"
+    t.integer "damage_type"
+    t.integer "range_normal"
+    t.integer "range_long"
+    t.integer "weight"
+    t.integer "properties", default: [], array: true
+    t.integer "throw_range_normal"
+    t.integer "throw_range_long"
+    t.string "two_handed_damage"
+    t.json "custom"
+    t.integer "armor_category"
+    t.integer "armor_class"
+    t.boolean "ac_dex_bonus"
+    t.integer "max_bonus"
+    t.integer "str_minimum"
+    t.boolean "stealth_disadvantage"
+    t.integer "gear_category"
+    t.integer "tool_category"
+    t.integer "vehicle_category"
+    t.integer "speed_unit"
+    t.integer "speed"
+    t.integer "capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "two_handed_damage_type"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "rarity", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "script", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
