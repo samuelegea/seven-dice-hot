@@ -16,6 +16,15 @@
       "Armor (medium or heavy, but not hide), uncommon",
       "This suit of armor is reinforced with adamantine, one of the hardest substances in existence. While you're wearing it, any critical hit against you becomes a normal hit."
     ],
+    "properties": {
+      "effects": [
+        {
+          "affect": "critical-hit",
+          "change": "normal-hit",
+          "condition": "wearing"
+        }
+      ]
+    },
     "url": "/api/magic-items/adamantine-armor"
   },
   {
@@ -51,6 +60,22 @@
       "Weapon (any ammunition), uncommon (+1), rare (+2), or very rare (+3)",
       "You have a bonus to attack and damage rolls made with this piece of magic ammunition. The bonus is determined by the rarity of the ammunition. Once it hits a target, the ammunition is no longer magical."
     ],
+    "properties": {
+      "effects": [
+        {
+          "affect": "attack",
+          "change": "bonus",
+          "condition": "wearing",
+          "value": 1
+        },
+        {
+          "affect": "damage",
+          "change": "bonus",
+          "condition": "wearing",
+          "value": 1
+        }
+      ]
+    },
     "url": "/api/magic-items/ammunition"
   },
   {
@@ -70,6 +95,22 @@
       "Weapon (any ammunition), uncommon",
       "You have a +1 bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
     ],
+    "properties": {
+      "effects": [
+        {
+          "affect": "attack",
+          "change": "bonus",
+          "condition": "wearing",
+          "value": 1
+        },
+        {
+          "affect": "damage",
+          "change": "bonus",
+          "condition": "wearing",
+          "value": 1
+        }
+      ]
+    },
     "url": "/api/magic-items/ammunition-1"
   },
   {
@@ -89,6 +130,22 @@
       "Weapon (any ammunition), rare",
       "You have a +2 bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
     ],
+    "properties": {
+      "effects": [
+        {
+          "affect": "attack",
+          "change": "bonus",
+          "condition": "wearing",
+          "value": 2
+        },
+        {
+          "affect": "damage",
+          "change": "bonus",
+          "condition": "wearing",
+          "value": 2
+        }
+      ]
+    },
     "url": "/api/magic-items/ammunition-2"
   },
   {
@@ -108,6 +165,22 @@
       "Weapon (any ammunition), very rare",
       "You have a +3 bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
     ],
+    "properties": {
+      "effects": [
+        {
+          "affect": "attack",
+          "change": "bonus",
+          "condition": "wearing",
+          "value": 3
+        },
+        {
+          "affect": "damage",
+          "change": "bonus",
+          "condition": "wearing",
+          "value": 3
+        }
+      ]
+    },
     "url": "/api/magic-items/ammunition-3"
   },
   {
@@ -127,6 +200,17 @@
       "Wondrous item, rare (requires attunement)",
       "Your Constitution score is 19 while you wear this amulet. It has no effect on you if your Constitution is already 19 or higher"
     ],
+    "properties": {
+      "effects": [
+        {
+          "affect": "ability_score",
+          "change": "set",
+          "condition": "wearing",
+          "value": 19,
+          "ability_score": "constitution"
+        }
+      ]
+    },
     "url": "/api/magic-items/amulet-of-health"
   },
   {
@@ -146,6 +230,18 @@
       "Wondrous item, uncommon (requires attunement)",
       "While wearing this amulet, you are hidden from divination magic. You can't be targeted by such magic or perceived through magical scrying sensors."
     ],
+    "properties": {
+      "effects": [
+        {
+          "affect": "visibility",
+          "from": {
+            "type": "source",
+            "source": "magic"
+          },
+          "condition": "wearing"
+        }
+      ]
+    },
     "url": "/api/magic-items/amulet-of-proof-against-detection-and-location"
   },
   {
@@ -163,8 +259,56 @@
     "variant": false,
     "desc": [
       "Wondrous item, very rare (requires attunement)",
-      "While wearing this amulet, you can use an action to name a location that you are familiar with on another plane of existence. Then make a DC 15 Intelligence check. On a successful check, you cast the plane shift spell. On a failure, you and each creature and object within 15 feet of you travel to a random destination. Roll a d100. On a 1-60, you travel to a random location on the plane you named. On a 61-100, you travel to a randomly determined plane of existence."
+      "While wearing this amulet, you can use an action to name a location that you are familiar with on another plane of existence.",
+      "Then make a DC 15 Intelligence check. On a successful check, you cast the plane shift spell.",
+      "On a failure, you and each creature and object within 15 feet of you travel to a random destination.",
+      "Roll a d100. On a 1-60, you travel to a random location on the plane you named. On a 61-100, you travel to a randomly determined plane of existence."
     ],
+    "properties": {
+      "effects": [
+        {
+          "condition": "wearing",
+          "actions": [
+            {
+              "type": "cast",
+              "spell": "plane-shift",
+              "check": {
+                "type": "ability",
+                "ability": "intelligence",
+                "dc": 15
+              },
+              "on_success": {
+                "type": "teleport",
+                "plane": "named"
+              },
+              "on_failure": {
+                "type": "teleport",
+                "plane": "random",
+                "within": {
+                  "type": "radius",
+                  "radius": 15
+                },
+                "on": {
+                  "type": "d100",
+                  "ranges": [
+                    {
+                      "min": 1,
+                      "max": 60,
+                      "plane": "named"
+                    },
+                    {
+                      "min": 61,
+                      "max": 100,
+                      "plane": "random"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
     "url": "/api/magic-items/amulet-of-the-planes"
   },
   {
@@ -184,6 +328,25 @@
       "Armor (shield), very rare (requires attunement)",
       "While holding this shield, you can speak its command word as a bonus action to cause it to animate. The shield leaps into the air and hovers in your space to protect you as if you were wielding it, leaving your hands free. The shield remains animated for 1 minute, until you use a bonus action to end this effect, or until you are incapacitated or die, at which point the shield falls to the ground or into your hand if you have one free."
     ],
+    "properties": {
+      "effects": [
+        {
+          "affect": "armor",
+          "condition": "wearing",
+          "actions": [
+            {
+              "type": "bonus",
+              "actions": [
+                {
+                  "type": "unequip",
+                  "act_as": "weilded"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     "url": "/api/magic-items/animated-shield"
   },
   {
@@ -224,6 +387,7 @@
       "| 9 | The apparatus sinks as much as 20 feet in liquid. | The apparatus rises up to 20 feet in liquid. |",
       "| 10 | The rear hatch unseals and opens. |  The rear hatch closes and seals. |"
     ],
+
     "url": "/api/magic-items/apparatus-of-the-crab"
   },
   {

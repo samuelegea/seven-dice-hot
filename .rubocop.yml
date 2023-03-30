@@ -1,9 +1,17 @@
+AllCops:
+  Exclude:
+   - db/schema.rb
 Style/FrozenStringLiteralComment:
   Enabled: false
 Metrics/MethodLength:
   Enabled: false
 Metrics/LineLength:
   Enabled: false
-AllCops:
-  Exclude:
-   - db/schema.rb
+
+Style/Documentation:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+Style/StringArray:
+  Enabled: false

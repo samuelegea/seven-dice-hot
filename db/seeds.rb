@@ -53,5 +53,28 @@ def create_items
   end
 end
 
-create_items
-create_languages
+def create_magic_items
+  magic_items = JSON.parse(File.read('db/sources/5e-SRD-Magic-Items.json'))
+
+  magic_items.each do |magic_item|
+    next if MagicItem.find_by_name(magic_item['name']).present?
+    p "Creating #{magic_item['name']}"
+
+    MagicItem.create(
+      name: magic_item['name'],
+      desc: magic_item['desc']&.join('. ') || '',
+      rarity: magic_item.dig('rarity', 'name')&.downcase,
+      category: magic_item.dig('equipment_category', 'name')&.downcase,
+      variant: magic_item['variant'],
+      properties: magic_item['properties'] || {}
+    )
+  end
+end
+
+# create_items
+# create_languages
+create_magic_items
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development? && AdminUser.find_by(email: 'admin@example.com').nil?
+
+
