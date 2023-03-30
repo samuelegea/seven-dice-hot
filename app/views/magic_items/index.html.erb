@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Magic items</h1>
+
+<div id="magic_items">
+  <% @magic_items.each do |magic_item| %>
+    <%= render magic_item %>
+    <p>
+      <%= link_to "Show this magic item", magic_item %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New magic item", new_magic_item_path %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @magic_item %>
+
+<div>
+  <%= link_to "Edit this magic item", edit_magic_item_path(@magic_item) %> |
+  <%= link_to "Back to magic items", magic_items_path %>
+
+  <%= button_to "Destroy this magic item", @magic_item, method: :delete %>
+</div>
