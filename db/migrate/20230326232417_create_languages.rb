@@ -3,7 +3,6 @@ class CreateLanguages < ActiveRecord::Migration[7.0]
     create_table :languages do |t|
       t.string :name
       t.integer :type
-      t.string :script
 
       t.timestamps
     end

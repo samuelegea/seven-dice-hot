@@ -1,0 +1,2 @@
+module WeaponPropertiesHelper
+end

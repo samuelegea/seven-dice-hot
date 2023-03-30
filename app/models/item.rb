@@ -42,8 +42,9 @@ class Item < ApplicationRecord
   ]
 
   # Missing equipment_category from enum  because there weren't any => 'rod', 'potion', 'ring', 'scroll', 'staff', 'wand'
-
   enum weapon_category: ['simple', 'martial']
   enum weapon_range: ['melee', 'ranged']
   enum :two_handed_damage_type, self.damage_types, prefix: :two_handed, scopes: false
+
+  has_and_belongs_to_many :weapon_properties, join_table: "weapon_properties_items"
 end

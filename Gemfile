@@ -62,9 +62,6 @@ gem 'foreman'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-# Use Array enum to user Enums with arrays
-gem 'array_enum'
-
 gem 'pry'
 gem 'pry-byebug'
 gem 'pry-rails'

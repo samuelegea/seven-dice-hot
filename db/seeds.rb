@@ -13,13 +13,29 @@ def create_languages
   end
 end
 
+def create_weapon_properties
+  weapon_properties = JSON.parse(File.read('db/sources/5e-SRD-Weapon-Properties.json'))
+
+  weapon_properties.each do |weapon_property|
+    next if WeaponProperty.all.find_by(name: weapon_property['name'])
+    p "Creating #{weapon_property['name']}"
+
+    WeaponProperty.create(
+      name: weapon_property['name'],
+      desc: weapon_property['desc']&.join('. ') || '',
+      properties: weapon_property['properties'] || {}
+    )
+  end
+end
+
+
 def create_items
   items = JSON.parse(File.read('db/sources/5e-SRD-Equipment.json'))
   items.each do |item|
     next if Item.all.find_by(name: item['name'])
 
     p "Creating #{item['name']}"
-    Item.create(
+    i = Item.create(
       name: item['name'],
       desc: item['desc']&.join('. ') || '',
       category: item.dig('equipment_category', 'name')&.downcase,
@@ -31,7 +47,6 @@ def create_items
       damage_type: item.dig('damage', 'damage_type', 'name')&.downcase,
       range_long: item.dig('range', 'long'),
       weight: item.dig('weight'),
-      # properties: item.dig('properties').map { |property| property['name'] },
       throw_range_normal: item.dig('thow_range', 'normal'),
       throw_range_long: item.dig('thow_range', 'long'),
       two_handed_damage: item.dig('two_handed_damage', 'damage_dice'),
@@ -50,6 +65,8 @@ def create_items
       speed_unit: item.dig('speed', 'unit'),
       capacity: item.dig('capacity').nil? ? nil : item.dig('capacity').split(' ')[0].to_i
     )
+
+    i.weapon_properties << item.dig('properties').map { |property| WeaponProperty.find_by_name(property['name']) } unless item.dig('properties').nil?
   end
 end
 
@@ -71,8 +88,9 @@ def create_magic_items
   end
 end
 
-# create_items
-# create_languages
+create_weapon_properties
+create_languages
+create_items
 create_magic_items
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development? && AdminUser.find_by(email: 'admin@example.com').nil?
