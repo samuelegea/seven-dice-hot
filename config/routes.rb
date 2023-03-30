@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :races
+  resources :skills
   resources :weapon_properties
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -4,17 +4,21 @@ module AbilityScores
   extend ActiveSupport::Concern
 
   included do
-    enum :ability_scores, {
-      strength: 0,
-      dexterety: 1,
-      constitution: 2,
-      inteligence: 3,
-      wisdom: 3
-      charisma: 4
-    }
+    enum :ability_score, [
+      'strength',
+      'dexterety',
+      'constitution',
+      'inteligence',
+      'wisdom',
+      'charisma'
+    ]
 
     def absc(attribute)
-      attribute.to_s[0..2].upcase
+      attribute[0..2].upcase
+    end
+
+    def self.absc_to_i(attr)
+      ability_scores.filter { |k, v| k[0..2].upcase == attr.upcase }.values.first
     end
   end
 end

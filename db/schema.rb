@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_30_213907) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_30_233004) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,12 +40,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_213907) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "equipment_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "equipment_categories_items", force: :cascade do |t|
+    t.bigint "equipment_category_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_category_id"], name: "index_equipment_categories_items_on_equipment_category_id"
+    t.index ["item_id"], name: "index_equipment_categories_items_on_item_id"
+  end
+
+  create_table "equipment_category_magic_items", force: :cascade do |t|
+    t.bigint "magic_item_id", null: false
+    t.bigint "equipment_category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_category_id"], name: "index_equipment_category_magic_items_on_equipment_category_id"
+    t.index ["magic_item_id"], name: "index_equipment_category_magic_items_on_magic_item_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.text "desc", null: false
-    t.integer "category", null: false
-    t.integer "weapon_category"
-    t.integer "weapon_range"
     t.integer "cost_cp", null: false
     t.string "damage"
     t.integer "damage_type"
@@ -56,21 +77,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_213907) do
     t.integer "throw_range_long"
     t.string "two_handed_damage"
     t.json "custom"
-    t.integer "armor_category"
     t.integer "armor_class"
     t.boolean "ac_dex_bonus"
     t.integer "max_bonus"
     t.integer "str_minimum"
     t.boolean "stealth_disadvantage"
-    t.integer "gear_category"
-    t.integer "tool_category"
-    t.integer "vehicle_category"
     t.integer "speed_unit"
     t.integer "speed"
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "two_handed_damage_type"
+  end
+
+  create_table "language_races", force: :cascade do |t|
+    t.bigint "language_id", null: false
+    t.bigint "race_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["language_id"], name: "index_language_races_on_language_id"
+    t.index ["race_id"], name: "index_language_races_on_race_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -84,7 +110,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_213907) do
   create_table "magic_items", force: :cascade do |t|
     t.string "name", null: false
     t.text "desc", null: false
-    t.integer "category", null: false
     t.integer "rarity", null: false
     t.boolean "variant", default: false, null: false
     t.bigint "variant_of_id"
@@ -92,6 +117,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_213907) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["variant_of_id"], name: "index_magic_items_on_variant_of_id"
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.string "name"
+    t.string "desc"
+    t.integer "speed"
+    t.integer "size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.text "desc", default: "", null: false
+    t.integer "ability_score", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -123,6 +165,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_213907) do
     t.index ["weapon_property_id"], name: "index_weapon_properties_items_on_weapon_property_id"
   end
 
+  add_foreign_key "equipment_categories_items", "equipment_categories"
+  add_foreign_key "equipment_categories_items", "items"
+  add_foreign_key "equipment_category_magic_items", "equipment_categories"
+  add_foreign_key "equipment_category_magic_items", "magic_items"
+  add_foreign_key "language_races", "languages"
+  add_foreign_key "language_races", "races"
   add_foreign_key "magic_items", "magic_items", column: "variant_of_id"
   add_foreign_key "weapon_properties_items", "items"
   add_foreign_key "weapon_properties_items", "weapon_properties"

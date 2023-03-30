@@ -7,8 +7,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Melee",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Simple Melee",
     "cost": {
       "quantity": 1,
@@ -48,8 +48,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Melee",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Simple Melee",
     "cost": {
       "quantity": 2,
@@ -103,8 +103,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Melee",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Simple Melee",
     "cost": {
       "quantity": 2,
@@ -139,8 +139,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Melee",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Simple Melee",
     "cost": {
       "quantity": 5,
@@ -189,8 +189,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Melee",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Simple Melee",
     "cost": {
       "quantity": 5,
@@ -234,8 +234,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Melee",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Simple Melee",
     "cost": {
       "quantity": 2,
@@ -284,8 +284,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Melee",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Simple Melee",
     "cost": {
       "quantity": 5,
@@ -320,8 +320,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Melee",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Simple Melee",
     "cost": {
       "quantity": 2,
@@ -369,8 +369,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Melee",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Simple Melee",
     "cost": {
       "quantity": 1,
@@ -410,8 +410,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Melee",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Simple Melee",
     "cost": {
       "quantity": 1,
@@ -468,8 +468,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Ranged",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Ranged Weapons",
     "category_range": "Simple Ranged",
     "cost": {
       "quantity": 25,
@@ -515,8 +515,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Ranged",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Ranged Weapons",
     "category_range": "Simple Ranged",
     "cost": {
       "quantity": 5,
@@ -561,8 +561,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Ranged",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Ranged Weapons",
     "category_range": "Simple Ranged",
     "cost": {
       "quantity": 25,
@@ -603,8 +603,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Simple",
-    "weapon_range": "Ranged",
+    "weapon_category": "Simple Weapons",
+    "weapon_range": "Ranged Weapons",
     "category_range": "Simple Ranged",
     "cost": {
       "quantity": 1,
@@ -640,8 +640,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 10,
@@ -684,8 +684,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 10,
@@ -714,8 +714,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 20,
@@ -760,8 +760,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 30,
@@ -801,8 +801,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 50,
@@ -842,8 +842,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 20,
@@ -888,8 +888,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 10,
@@ -932,8 +932,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 15,
@@ -976,8 +976,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 10,
@@ -1017,8 +1017,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 15,
@@ -1047,8 +1047,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 5,
@@ -1093,8 +1093,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 25,
@@ -1129,8 +1129,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 25,
@@ -1170,8 +1170,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 10,
@@ -1216,8 +1216,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 5,
@@ -1269,8 +1269,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 5,
@@ -1299,8 +1299,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 15,
@@ -1343,8 +1343,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Melee",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Melee Weapons",
     "category_range": "Martial Melee",
     "cost": {
       "quantity": 2,
@@ -1384,8 +1384,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Ranged",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Ranged Weapons",
     "category_range": "Martial Ranged",
     "cost": {
       "quantity": 10,
@@ -1426,8 +1426,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Ranged",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Ranged Weapons",
     "category_range": "Martial Ranged",
     "cost": {
       "quantity": 75,
@@ -1473,8 +1473,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Ranged",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Ranged Weapons",
     "category_range": "Martial Ranged",
     "cost": {
       "quantity": 50,
@@ -1525,8 +1525,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Ranged",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Ranged Weapons",
     "category_range": "Martial Ranged",
     "cost": {
       "quantity": 50,
@@ -1572,8 +1572,8 @@
       "name": "Weapon",
       "url": "/api/equipment-categories/weapon"
     },
-    "weapon_category": "Martial",
-    "weapon_range": "Ranged",
+    "weapon_category": "Martial Weapons",
+    "weapon_range": "Ranged Weapons",
     "category_range": "Martial Ranged",
     "cost": {
       "quantity": 1,
@@ -1613,7 +1613,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Light",
+    "armor_category": "Light Armor",
     "armor_class": {
       "base": 11,
       "dex_bonus": true
@@ -1635,7 +1635,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Light",
+    "armor_category": "Light Armor",
     "armor_class": {
       "base": 11,
       "dex_bonus": true
@@ -1657,7 +1657,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Light",
+    "armor_category": "Light Armor",
     "armor_class": {
       "base": 12,
       "dex_bonus": true
@@ -1679,7 +1679,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Medium",
+    "armor_category": "Medium Armor",
     "armor_class": {
       "base": 12,
       "dex_bonus": true,
@@ -1702,7 +1702,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Medium",
+    "armor_category": "Medium Armor",
     "armor_class": {
       "base": 13,
       "dex_bonus": true,
@@ -1725,7 +1725,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Medium",
+    "armor_category": "Medium Armor",
     "armor_class": {
       "base": 14,
       "dex_bonus": true,
@@ -1748,7 +1748,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Medium",
+    "armor_category": "Medium Armor",
     "armor_class": {
       "base": 14,
       "dex_bonus": true,
@@ -1771,7 +1771,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Medium",
+    "armor_category": "Medium Armor",
     "armor_class": {
       "base": 15,
       "dex_bonus": true,
@@ -1794,7 +1794,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Heavy",
+    "armor_category": "Heavy Armor",
     "armor_class": {
       "base": 14,
       "dex_bonus": false
@@ -1816,7 +1816,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Heavy",
+    "armor_category": "Heavy Armor",
     "armor_class": {
       "base": 16,
       "dex_bonus": false
@@ -1838,7 +1838,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Heavy",
+    "armor_category": "Heavy Armor",
     "armor_class": {
       "base": 17,
       "dex_bonus": false
@@ -1860,7 +1860,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Heavy",
+    "armor_category": "Heavy Armor",
     "armor_class": {
       "base": 18,
       "dex_bonus": false
@@ -1882,7 +1882,7 @@
       "name": "Armor",
       "url": "/api/equipment-categories/armor"
     },
-    "armor_category": "Shield",
+    "armor_category": "Shields",
     "armor_class": {
       "base": 2,
       "dex_bonus": false
@@ -5315,7 +5315,7 @@
       "name": "Tools",
       "url": "/api/equipment-categories/tools"
     },
-    "tool_category": "Musical Instrument",
+    "tool_category": "Musical Instruments",
     "cost": {
       "quantity": 30,
       "unit": "gp"
@@ -5334,7 +5334,7 @@
       "name": "Tools",
       "url": "/api/equipment-categories/tools"
     },
-    "tool_category": "Musical Instrument",
+    "tool_category": "Musical Instruments",
     "cost": {
       "quantity": 6,
       "unit": "gp"
@@ -5353,7 +5353,7 @@
       "name": "Tools",
       "url": "/api/equipment-categories/tools"
     },
-    "tool_category": "Musical Instrument",
+    "tool_category": "Musical Instruments",
     "cost": {
       "quantity": 25,
       "unit": "gp"
@@ -5372,7 +5372,7 @@
       "name": "Tools",
       "url": "/api/equipment-categories/tools"
     },
-    "tool_category": "Musical Instrument",
+    "tool_category": "Musical Instruments",
     "cost": {
       "quantity": 2,
       "unit": "gp"
@@ -5391,7 +5391,7 @@
       "name": "Tools",
       "url": "/api/equipment-categories/tools"
     },
-    "tool_category": "Musical Instrument",
+    "tool_category": "Musical Instruments",
     "cost": {
       "quantity": 35,
       "unit": "gp"
@@ -5410,7 +5410,7 @@
       "name": "Tools",
       "url": "/api/equipment-categories/tools"
     },
-    "tool_category": "Musical Instrument",
+    "tool_category": "Musical Instruments",
     "cost": {
       "quantity": 30,
       "unit": "gp"
@@ -5429,7 +5429,7 @@
       "name": "Tools",
       "url": "/api/equipment-categories/tools"
     },
-    "tool_category": "Musical Instrument",
+    "tool_category": "Musical Instruments",
     "cost": {
       "quantity": 3,
       "unit": "gp"
@@ -5448,7 +5448,7 @@
       "name": "Tools",
       "url": "/api/equipment-categories/tools"
     },
-    "tool_category": "Musical Instrument",
+    "tool_category": "Musical Instruments",
     "cost": {
       "quantity": 12,
       "unit": "gp"
@@ -5467,7 +5467,7 @@
       "name": "Tools",
       "url": "/api/equipment-categories/tools"
     },
-    "tool_category": "Musical Instrument",
+    "tool_category": "Musical Instruments",
     "cost": {
       "quantity": 2,
       "unit": "gp"
@@ -5486,7 +5486,7 @@
       "name": "Tools",
       "url": "/api/equipment-categories/tools"
     },
-    "tool_category": "Musical Instrument",
+    "tool_category": "Musical Instruments",
     "cost": {
       "quantity": 30,
       "unit": "gp"
