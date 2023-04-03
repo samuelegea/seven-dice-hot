@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :traits
   resources :races
   resources :skills
   resources :weapon_properties

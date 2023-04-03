@@ -4,6 +4,7 @@ def create_languages
   languages = JSON.parse(File.read('db/sources/5e-SRD-Languages.json'))
   languages.each do |language|
     next if Language.find_by(name: language['name'])
+    p "Creating language -> #{language['name']}"
 
     Language.create(
       name: language['name'],
@@ -18,7 +19,7 @@ def create_weapon_properties
 
   weapon_properties.each do |weapon_property|
     next if WeaponProperty.all.find_by(name: weapon_property['name'])
-    p "Creating #{weapon_property['name']}"
+    p "Creating weapon property -> #{weapon_property['name']}"
 
     WeaponProperty.create(
       name: weapon_property['name'],
@@ -34,7 +35,7 @@ def create_items
   items.each do |item|
     next if Item.all.find_by(name: item['name'])
 
-    p "Creating #{item['name']}"
+    p "Creating Item -> #{item['name']}"
     i = Item.create(
       name: item['name'],
       desc: item['desc']&.join('. ') || '',
@@ -77,7 +78,7 @@ def create_magic_items
 
   magic_items.each do |magic_item|
     next if MagicItem.find_by_name(magic_item['name']).present?
-    p "Creating #{magic_item['name']}"
+    p "Creating Magic Item ->  #{magic_item['name']}"
 
     mi = MagicItem.create(
       name: magic_item['name'],
@@ -95,7 +96,7 @@ def create_skills
 
   skills.each do |skill|
     next if Skill.find_by_name(skill['name']).present?
-    p "Creating #{skill['name']}"
+    p "Creating Skill -> #{skill['name']}"
 
     Skill.create(
       name: skill['name'],
@@ -111,10 +112,75 @@ def create_equipment_categories
   equipment_categories.each do |equipment_category|
     next if EquipmentCategory.find_by_name(equipment_category['name']).present?
 
-    p "Creating #{equipment_category['name']}"
+    p "Creating Equipment Category -> #{equipment_category['name']}"
     EquipmentCategory.create(name: equipment_category['name'])
   end
 end
+
+def create_traits
+  traits = JSON.parse(File.read('db/sources/5e-SRD-Traits.json'))
+
+  traits.each do |trait|
+    next if Trait.find_by_name(trait['name']).present?
+
+    p "Creating Trait -> #{trait['name']}"
+    t = Trait.create(
+      name: trait['name'],
+      desc: trait['desc']&.join('. ') || '',
+      properties: trait['properties'] || {}
+    )
+
+    trait['proficiencies'].each do |proficiency|
+      if proficiency['index'].include?('skill')
+        t.proficiencies.create(skill: Skill.find_by_name(proficiency['name']))
+        next
+      elsif proficiency['index'].include?('tinkers-tools')
+        t.proficiencies.create(item: Item.find_by_name(proficiency['name']))
+        next
+      end
+
+      t.proficiencies.create(equipment_category: EquipmentCategory.find_by_name(proficiency['name']))
+    end
+  end
+end
+
+
+def create_races
+  races = JSON.parse(File.read('db/sources/5e-SRD-Races.json'))
+
+  races.each do |race|
+    next if Race.find_by_name(race['name'])
+
+    p "Creating race -> #{race['name']}"
+
+    r = Race.create(
+      name: race['name'],
+      desc: [race['desc'], race['alignment'], race['age'], race['size_description'], race['language_desc']].flatten&.join('. ') || '',
+      speed: race.dig('speed'),
+      size: race['size'].downcase,
+    )
+
+    race['starting_proficiencies'].each do |proficiency|
+      r.proficiencies.create(equipment_category: EquipmentCategory.find_by_name(proficiency['name']))
+    end
+
+    race['languages'].each do |language|
+      r.languages.append(Language.find_by_name(language['name']))
+    end
+
+    race['ability_bonuses'].each do |ability_bonus|
+      r.ability_score_increases.create(
+        ability: AbilityScoreIncrease.absc_to_i(ability_bonus.dig('ability_score', 'name')),
+        bonus: ability_bonus['bonus']
+      )
+    end
+
+    race['traits'].each do |trait|
+      r.traits.append(Trait.find_by_name(trait['name']))
+    end
+  end
+end
+
 
 
 create_equipment_categories
@@ -123,6 +189,8 @@ create_languages
 create_items
 create_magic_items
 create_skills
+create_traits
+create_races
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development? && AdminUser.find_by(email: 'admin@example.com').nil?
 
