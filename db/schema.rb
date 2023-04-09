@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_02_231743) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_07_212309) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -170,6 +170,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_231743) do
     t.integer "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_id"
+    t.index ["parent_id"], name: "index_races_on_parent_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -239,6 +241,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_231743) do
   add_foreign_key "proficiencies", "skills"
   add_foreign_key "proficiency_options_proficiency", "proficiencies"
   add_foreign_key "proficiency_options_proficiency", "proficiency_options"
+  add_foreign_key "races", "races", column: "parent_id"
   add_foreign_key "traits_races", "races"
   add_foreign_key "traits_races", "traits"
   add_foreign_key "weapon_properties_items", "items"

@@ -44,30 +44,30 @@ def create_items
       range_normal: item.dig('range', 'normal'),
       damage_type: item.dig('damage', 'damage_type', 'name')&.downcase,
       range_long: item.dig('range', 'long'),
-      weight: item.dig('weight'),
+      weight: item['weight'],
       throw_range_normal: item.dig('thow_range', 'normal'),
       throw_range_long: item.dig('thow_range', 'long'),
       two_handed_damage: item.dig('two_handed_damage', 'damage_dice'),
       two_handed_damage_type: item.dig('two_handed_damage', 'damage_type', 'name')&.downcase,
-      custom: { "special": item.dig('special') },
+      custom: { "special": item['special'] },
       armor_class: item.dig('armor_class', 'base'),
       ac_dex_bonus: item.dig('armor_class', 'dex_bonus'),
       max_bonus: item.dig('armor_class', 'max_dex_bonus'),
-      str_minimum: item.dig('str_minimum'),
-      stealth_disadvantage: item.dig('stealth_disadvantage'),
+      str_minimum: item['str_minimum'],
+      stealth_disadvantage: item['stealth_disadvantage'],
       speed: item.dig('speed', 'quantity'),
       speed_unit: item.dig('speed', 'unit'),
-      capacity: item.dig('capacity').nil? ? nil : item.dig('capacity').split(' ')[0].to_i
+      capacity: item['capacity'].nil? ? nil : item['capacity'].split(' ')[0].to_i
     )
 
-    i.weapon_properties << item.dig('properties').map { |property| WeaponProperty.find_by_name(property['name']) } unless item.dig('properties').nil?
+    i.weapon_properties << item['properties'].map { |property| WeaponProperty.find_by_name(property['name']) } unless item['properties'].nil?
 
     i.equipment_categories << EquipmentCategory.find_by_name!(item.dig('equipment_category', 'name')) unless item.dig('equipment_category', 'name').nil?
-    i.equipment_categories << EquipmentCategory.find_by_name!(item.dig('armor_category'))             unless item.dig('armor_category').nil?
-    i.equipment_categories << EquipmentCategory.find_by_name!(item.dig('weapon_category'))            unless item.dig('weapon_category').nil?
-    i.equipment_categories << EquipmentCategory.find_by_name!(item.dig('weapon_range'))               unless item.dig('weapon_range').nil?
-    i.equipment_categories << EquipmentCategory.find_by_name!(item.dig('tool_category'))              unless item.dig('tool_category').nil?
-    i.equipment_categories << EquipmentCategory.find_by_name!(item.dig('vehicle_category'))           unless item.dig('vehicle_category').nil?
+    i.equipment_categories << EquipmentCategory.find_by_name!(item['armor_category'])             unless item['armor_category'].nil?
+    i.equipment_categories << EquipmentCategory.find_by_name!(item['weapon_category'])            unless item['weapon_category'].nil?
+    i.equipment_categories << EquipmentCategory.find_by_name!(item['weapon_range'])               unless item['weapon_range'].nil?
+    i.equipment_categories << EquipmentCategory.find_by_name!(item['tool_category'])              unless item['tool_category'].nil?
+    i.equipment_categories << EquipmentCategory.find_by_name!(item['vehicle_category'])           unless item['vehicle_category'].nil?
     i.equipment_categories << EquipmentCategory.find_by_name!(item.dig('gear_category', 'name'))      unless item.dig('gear_category', 'name').nil?
 
   end
@@ -156,12 +156,20 @@ def create_races
     r = Race.create(
       name: race['name'],
       desc: [race['desc'], race['alignment'], race['age'], race['size_description'], race['language_desc']].flatten&.join('. ') || '',
-      speed: race.dig('speed'),
+      speed: race['speed'],
       size: race['size'].downcase,
     )
 
     race['starting_proficiencies'].each do |proficiency|
-      r.proficiencies.create(equipment_category: EquipmentCategory.find_by_name(proficiency['name']))
+      if proficiency['index'].include?('skill')
+        race.proficiencies.create(skill: Skill.find_by_name(proficiency['name']))
+        next
+      elsif proficiency['index'].include?('tinkers-tools')
+        race.proficiencies.create(item: Item.find_by_name(proficiency['name']))
+        next
+      end
+
+      race.proficiencies.create(equipment_category: EquipmentCategory.find_by_name(proficiency['name']))
     end
 
     race['languages'].each do |language|
@@ -181,7 +189,42 @@ def create_races
   end
 end
 
+def create_sub_races
+  races = JSON.parse(File.read('db/sources/5e-SRD-Subraces.json'))
 
+  races.each do |race|
+    next if Race.find_by_name(race['name'])
+
+    p "Creating race -> #{race['name']}"
+
+    r = Race.create(
+      name: race['name'],
+      desc: [race['desc'], race['alignment'], race['age'], race['size_description'], race['language_desc']].flatten&.join('. ') || '',
+      parent_id: Race.find_by_name(race.dig('race', 'name')).id,
+      speed: Race.find_by_name(race.dig('race', 'name')).speed,
+      size: Race.find_by_name(race.dig('race', 'name')).size,
+    )
+
+    race['starting_proficiencies']&.each do |proficiency|
+      r.proficiencies.create(equipment_category: EquipmentCategory.find_by_name(proficiency['name']))
+    end
+
+    race['languages']&.each do |language|
+      r.languages.append(Language.find_by_name(language['name']))
+    end
+
+    race['ability_bonuses']&.each do |ability_bonus|
+      r.ability_score_increases.create(
+        ability: AbilityScoreIncrease.absc_to_i(ability_bonus.dig('ability_score', 'name')),
+        bonus: ability_bonus['bonus']
+      )
+    end
+
+    race['traits']&.each do |trait|
+      r.traits.append(Trait.find_by_name(trait['name']))
+    end
+  end
+end
 
 create_equipment_categories
 create_weapon_properties
@@ -191,6 +234,7 @@ create_magic_items
 create_skills
 create_traits
 create_races
+create_sub_races
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development? && AdminUser.find_by(email: 'admin@example.com').nil?
 
