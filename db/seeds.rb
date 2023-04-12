@@ -29,7 +29,6 @@ def create_weapon_properties
   end
 end
 
-
 def create_items
   items = JSON.parse(File.read('db/sources/5e-SRD-Equipment.json'))
   items.each do |item|
@@ -117,6 +116,22 @@ def create_equipment_categories
   end
 end
 
+def create_proficiencies
+  proficiencies = JSON.parse(File.read('db/sources/5e-SRD-Proficiencies.json'))
+
+  proficiencies.each do |proficiency|
+    next if Proficiency.find_by_name(proficiency['name']).present?
+
+    p "Creating Proficiency -> #{proficiency['name']}"
+    Proficiency.create(
+      name: proficiency['name'],
+      skill: Skill.find_by_name(proficiency.dig('reference', 'name')),
+      equipment_category: EquipmentCategory.find_by_name(proficiency.dig('reference', 'name')),
+      item: Item.find_by_name(proficiency.dig('reference', 'name')),
+    )
+  end
+end
+
 def create_traits
   traits = JSON.parse(File.read('db/sources/5e-SRD-Traits.json'))
 
@@ -131,19 +146,10 @@ def create_traits
     )
 
     trait['proficiencies'].each do |proficiency|
-      if proficiency['index'].include?('skill')
-        t.proficiencies.create(skill: Skill.find_by_name(proficiency['name']))
-        next
-      elsif proficiency['index'].include?('tinkers-tools')
-        t.proficiencies.create(item: Item.find_by_name(proficiency['name']))
-        next
-      end
-
-      t.proficiencies.create(equipment_category: EquipmentCategory.find_by_name(proficiency['name']))
+      t.proficiencies << Proficiency.find_by_name(proficiency['name'])
     end
   end
 end
-
 
 def create_races
   races = JSON.parse(File.read('db/sources/5e-SRD-Races.json'))
@@ -161,6 +167,7 @@ def create_races
     )
 
     race['starting_proficiencies'].each do |proficiency|
+<<<<<<< HEAD
       if proficiency['index'].include?('skill')
         race.proficiencies.create(skill: Skill.find_by_name(proficiency['name']))
         next
@@ -170,6 +177,9 @@ def create_races
       end
 
       race.proficiencies.create(equipment_category: EquipmentCategory.find_by_name(proficiency['name']))
+=======
+      r.proficiencies << Proficiency.find_by_name(proficiency['name'])
+>>>>>>> 7dc01e5 (feat: get proficiencies to work properly)
     end
 
     race['languages'].each do |language|
@@ -189,42 +199,44 @@ def create_races
   end
 end
 
-def create_sub_races
-  races = JSON.parse(File.read('db/sources/5e-SRD-Subraces.json'))
+def create_subraces
+  sub_races = JSON.parse(File.read('db/sources/5e-SRD-Subraces.json'))
 
-  races.each do |race|
-    next if Race.find_by_name(race['name'])
+  sub_races.each do |sub_race|
+    next if Race.find_by_name(sub_race['name'])
 
-    p "Creating race -> #{race['name']}"
+    p "creating sub-race -> #{sub_race['name']}"
 
+    parent_race = Race.find_by_name(sub_race.dig('race', 'name'))
     r = Race.create(
-      name: race['name'],
-      desc: [race['desc'], race['alignment'], race['age'], race['size_description'], race['language_desc']].flatten&.join('. ') || '',
-      parent_id: Race.find_by_name(race.dig('race', 'name')).id,
-      speed: Race.find_by_name(race.dig('race', 'name')).speed,
-      size: Race.find_by_name(race.dig('race', 'name')).size,
+      name: sub_race['name'],
+      desc: sub_race['desc'] || '',
+      speed: parent_race.speed,
+      size: parent_race.size,
     )
 
-    race['starting_proficiencies']&.each do |proficiency|
+    sub_race.dig('starting_proficiencies').each do |proficiency|
       r.proficiencies.create(equipment_category: EquipmentCategory.find_by_name(proficiency['name']))
     end
 
-    race['languages']&.each do |language|
+    sub_race.dig('languages')&.each do |language|
       r.languages.append(Language.find_by_name(language['name']))
     end
 
-    race['ability_bonuses']&.each do |ability_bonus|
+    sub_race.dig('ability_bonuses')&.each do |ability_bonus|
       r.ability_score_increases.create(
         ability: AbilityScoreIncrease.absc_to_i(ability_bonus.dig('ability_score', 'name')),
         bonus: ability_bonus['bonus']
       )
     end
 
-    race['traits']&.each do |trait|
+    sub_race.dig('traits')&.each do |trait|
       r.traits.append(Trait.find_by_name(trait['name']))
     end
   end
 end
+
+# --------------------------------------------
 
 create_equipment_categories
 create_weapon_properties
@@ -232,9 +244,10 @@ create_languages
 create_items
 create_magic_items
 create_skills
+create_proficiencies
 create_traits
 create_races
-create_sub_races
+create_subraces
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development? && AdminUser.find_by(email: 'admin@example.com').nil?
 
