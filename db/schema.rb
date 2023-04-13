@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_12_114606) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_13_155147) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_114606) do
     t.datetime "updated_at", null: false
     t.index ["proficiency_id"], name: "index_create_proficiency_sources_on_proficiency_id"
     t.index ["source_type", "source_id"], name: "index_create_proficiency_sources_on_source"
+  end
+
+  create_table "custom_tables", force: :cascade do |t|
+    t.string "source_type", null: false
+    t.bigint "source_id", null: false
+    t.string "column_name", null: false
+    t.string "cell_value", null: false
+    t.integer "cell_type", null: false
+    t.integer "row_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_type", "source_id"], name: "index_custom_tables_on_source"
   end
 
   create_table "equipment_categories", force: :cascade do |t|
@@ -209,6 +221,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_114606) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "spells", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "desc", null: false
+    t.integer "school", null: false
+    t.integer "components", default: [], null: false, array: true
+    t.string "material", null: false
+    t.boolean "ritual", default: false, null: false
+    t.integer "duration_number", default: 0, null: false
+    t.integer "duration_unit", default: 0, null: false
+    t.integer "duration_delimiter"
+    t.boolean "concentration", default: false, null: false
+    t.integer "casting_time_unit", default: 0, null: false
+    t.integer "casting_time_number", default: 0, null: false
+    t.integer "level", default: 0, null: false
+    t.boolean "attack_type_melee", default: false
+    t.integer "saving_throw", default: 0
+    t.integer "dc_success"
+    t.string "dc_desc"
+    t.integer "aoe_type"
+    t.integer "aoe_size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "traits", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "desc", default: "", null: false
@@ -269,11 +305,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_114606) do
   add_foreign_key "proficiency_option_sources", "proficiency_options"
   add_foreign_key "proficiency_options_proficiency", "proficiencies"
   add_foreign_key "proficiency_options_proficiency", "proficiency_options"
-<<<<<<< HEAD
-  add_foreign_key "races", "races", column: "parent_id"
-=======
   add_foreign_key "proficiency_sources", "proficiencies"
->>>>>>> 7dc01e5 (feat: get proficiencies to work properly)
+  add_foreign_key "races", "races", column: "parent_id"
   add_foreign_key "traits_races", "races"
   add_foreign_key "traits_races", "traits"
   add_foreign_key "weapon_properties_items", "items"

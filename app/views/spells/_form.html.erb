@@ -1,0 +1,112 @@
+<%= form_with(model: spell) do |form| %>
+  <% if spell.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(spell.errors.count, "error") %> prohibited this spell from being saved:</h2>
+
+      <ul>
+        <% spell.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :desc, style: "display: block" %>
+    <%= form.text_area :desc %>
+  </div>
+
+  <div>
+    <%= form.label :school, style: "display: block" %>
+    <%= form.number_field :school %>
+  </div>
+
+  <div>
+    <%= form.label :components, style: "display: block" %>
+    <%= form.number_field :components %>
+  </div>
+
+  <div>
+    <%= form.label :material, style: "display: block" %>
+    <%= form.text_field :material %>
+  </div>
+
+  <div>
+    <%= form.label :ritual, style: "display: block" %>
+    <%= form.check_box :ritual %>
+  </div>
+
+  <div>
+    <%= form.label :duration_number, style: "display: block" %>
+    <%= form.number_field :duration_number %>
+  </div>
+
+  <div>
+    <%= form.label :duration_unit, style: "display: block" %>
+    <%= form.number_field :duration_unit %>
+  </div>
+
+  <div>
+    <%= form.label :duration_delimiter, style: "display: block" %>
+    <%= form.number_field :duration_delimiter %>
+  </div>
+
+  <div>
+    <%= form.label :concentration, style: "display: block" %>
+    <%= form.check_box :concentration %>
+  </div>
+
+  <div>
+    <%= form.label :casting_time_unitt, style: "display: block" %>
+    <%= form.number_field :casting_time_unitt %>
+  </div>
+
+  <div>
+    <%= form.label :casting_time_number, style: "display: block" %>
+    <%= form.number_field :casting_time_number %>
+  </div>
+
+  <div>
+    <%= form.label :level, style: "display: block" %>
+    <%= form.number_field :level %>
+  </div>
+
+  <div>
+    <%= form.label :attack_type_melee, style: "display: block" %>
+    <%= form.check_box :attack_type_melee %>
+  </div>
+
+  <div>
+    <%= form.label :saving_throw, style: "display: block" %>
+    <%= form.number_field :saving_throw %>
+  </div>
+
+  <div>
+    <%= form.label :dc_success, style: "display: block" %>
+    <%= form.number_field :dc_success %>
+  </div>
+
+  <div>
+    <%= form.label :dc_desc, style: "display: block" %>
+    <%= form.text_field :dc_desc %>
+  </div>
+
+  <div>
+    <%= form.label :aoe_type, style: "display: block" %>
+    <%= form.number_field :aoe_type %>
+  </div>
+
+  <div>
+    <%= form.label :aoe_size, style: "display: block" %>
+    <%= form.number_field :aoe_size %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

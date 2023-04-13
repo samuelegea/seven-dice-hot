@@ -18,7 +18,7 @@ module AbilityScores
     end
 
     def self.absc_to_i(attr)
-      ability_scores.filter { |k, v| k[0..2].upcase == attr.upcase }.values.first
+      ability_scores.filter { |k, _v| k[0..2].upcase == attr.upcase }.values.first
     end
   end
 end

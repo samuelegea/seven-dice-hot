@@ -5,9 +5,9 @@
     "desc": [
       "A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage and no damage at the end of its next turn."
     ],
-    "higher_level": [
-      "When you cast this spell using a spell slot of 3rd level or higher, the damage (both initial and later) increases by 1d4 for each slot level above 2nd."
-    ],
+    "higher_level": {
+      "extra_damage": "1d4"
+    },
     "range": "90 feet",
     "components": ["V", "S", "M"],
     "material": "Powdered rhubarb leaf and an adder's stomach.",
@@ -127,9 +127,9 @@
     "desc": [
       "Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 for the duration."
     ],
-    "higher_level": [
-      "When you cast this spell using a spell slot of 3rd level or higher, a target's hit points increase by an additional 5 for each slot level above 2nd."
-    ],
+    "higher_level": {
+      "extra_heal": "5"
+    },
     "range": "30 feet",
     "components": ["V", "S", "M"],
     "material": "A tiny strip of white cloth.",
@@ -321,9 +321,9 @@
       "By means of this spell, you use an animal to deliver a message. Choose a Tiny beast you can see within range, such as a squirrel, a blue jay, or a bat. You specify a location, which you must have visited, and a recipient who matches a general description, such as \"a man or woman dressed in the uniform of the town guard\" or \"a red-haired dwarf wearing a pointed hat.\" You also speak a message of up to twenty-five words. The target beast travels for the duration of the spell toward the specified location, covering about 50 miles per 24 hours for a flying messenger, or 25 miles for other animals.",
       "When the messenger arrives, it delivers your message to the creature that you described, replicating the sound of your voice. The messenger speaks only to a creature matching the description you gave. If the messenger doesn't reach its destination before the spell ends, the message is lost, and the beast makes its way back to where you cast this spell."
     ],
-    "higher_level": [
-      "If you cast this spell using a spell slot of 3nd level or higher, the duration of the spell increases by 48 hours for each slot level above 2nd."
-    ],
+    "higher_level": {
+      "extra_duration": "48 hours"
+    },
     "range": "30 feet",
     "components": ["V", "S", "M"],
     "material": "A morsel of food.",
@@ -401,9 +401,12 @@
       "On each of your turns, you can use a bonus action to mentally command any creature you made with this spell if the creature is within 60 feet of you (if you control multiple creatures, you can command any or all of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move during its next turn, or you can issue a general command, such as to guard a particular chamber or corridor. If you issue no commands, the creature only defends itself against hostile creatures. Once given an order, the creature continues to follow it until its task is complete.",
       "The creature is under your control for 24 hours, after which it stops obeying any command you've given it. To maintain control of the creature for another 24 hours, you must cast this spell on the creature again before the current 24-hour period ends. This use of the spell reasserts your control over up to four creatures you have animated with this spell, rather than animating a new one."
     ],
-    "higher_level": [
+    "higher_level": {
+      "extra_target": 2,
+      "desc": [
       "When you cast this spell using a spell slot of 4th level or higher, you animate or reassert control over two additional undead creatures for each slot level above 3rd. Each of the creatures must come from a different corpse or pile of bones."
-    ],
+    ]
+  },
     "range": "10 feet",
     "components": ["V", "S", "M"],
     "material": "A drop of blood, a piece of flesh, and a pinch of bone dust.",
@@ -455,9 +458,11 @@
       "An animated object is a construct with AC, hit points, attacks, Strength, and Dexterity determined by its size. Its Constitution is 10 and its Intelligence and Wisdom are 3, and its Charisma is 1. Its speed is 30 feet; if the object lacks legs or other appendages it can use for locomotion, it instead has a flying speed of 30 feet and can hover. If the object is securely attached to a surface or a larger object, such as a chain bolted to a wall, its speed is 0. It has blindsight with a radius of 30 feet and is blind beyond that distance. When the animated object drops to 0 hit points, it reverts to its original object form, and any remaining damage carries over to its original object form.",
       "If you command an object to attack, it can make a single melee attack against a creature within 5 feet of it. It makes a slam attack with an attack bonus and bludgeoning damage determined by its size. The DM might rule that a specific object inflicts slashing or piercing damage based on its form."
     ],
-    "higher_level": [
+    "higher_level": {
+      "extra_target": 2,
+      "desc": [
       "If you cast this spell using a spell slot of 6th level or higher, you can animate two additional objects for each slot level above 5th."
-    ],
+    ]},
     "range": "120 feet",
     "components": ["V", "S"],
     "ritual": false,
@@ -666,9 +671,11 @@
       "***Grasping Hand.*** The hand attempts to grapple a Huge or smaller creature within 5 feet of it. You use the hand's Strength score to resolve the grapple. If the target is Medium or smaller, you have advantage on the check. While the hand is grappling the target, you can use a bonus action to have the hand crush it. When you do so, the target takes bludgeoning damage equal to 2d6 + your spellcasting ability modifier.",
       "***Interposing Hand.*** The hand interposes itself between you and a creature you choose until you give the hand a different command. The hand moves to stay between you and the target, providing you with half cover against the target. The target can't move through the hand's space if its Strength score is less than or equal to the hand's Strength score. If its Strength score is higher than the hand's Strength score, the target can move toward you through the hand's space, but that space is difficult terrain for the target."
     ],
-    "higher_level": [
+    "higher_level": {
+      "extra_damage":"2d8",
+      "desc": [
       "When you cast this spell using a spell slot of 6th level or higher, the damage from the clenched fist option increases by 2d8 and the damage from the grasping hand increases by 2d6 for each slot level above 5th."
-    ],
+    ]},
     "range": "120 feet",
     "components": ["V", "S", "M"],
     "material": "An eggshell and a snakeskin glove.",
@@ -938,9 +945,11 @@
     "desc": [
       "Up to three creatures of your choice that you can see within range must make charisma saving throws. Whenever a target that fails this saving throw makes an attack roll or a saving throw before the spell ends, the target must roll a d4 and subtract the number rolled from the attack roll or saving throw."
     ],
-    "higher_level": [
+    "higher_level": {
+      "extra_target": 1,
+      "desc":[
       "When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st."
-    ],
+    ]},
     "range": "30 feet",
     "components": ["V", "S", "M"],
     "material": "A drop of blood.",
@@ -991,9 +1000,11 @@
       "If the target is native to the plane of existence you're on, you banish the target to a harmless demiplane. While there, the target is incapacitated. The target remains there until the spell ends, at which point the target reappears in the space it left or in the nearest unoccupied space if that space is occupied.",
       "If the target is native to a different plane of existence than the one you're on, the target is banished with a faint popping noise, returning to its home plane. If the spell ends before 1 minute has passed, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. Otherwise, the target doesn't return."
     ],
-    "higher_level": [
+    "higher_level": {
+      "extra_target": 1,
+      "desc": [
       "When you cast this spell using a spell slot of 5th level or higher, you can target one additional creature for each slot level above 4th."
-    ],
+    ]},
     "range": "60 feet",
     "components": ["V", "S", "M"],
     "material": "An item distasteful to the target.",
@@ -1145,9 +1156,36 @@
       "- While the target is cursed, your attacks and spells deal an extra 1d8 necrotic damage to the target.",
       "A remove curse spell ends this effect. At the DM's option, you may choose an alternative curse effect, but it should be no more powerful than those described above. The DM has final say on such a curse's effect."
     ],
-    "higher_level": [
+    "higher_level": {
+      "levels": {
+        "4": {
+          "concentration": true,
+          "duration": "10 minutes"
+        },
+        "5": {
+          "concentration": false,
+          "duration": "8 hours"
+        },
+        "6": {
+          "concentration": false,
+          "duration": "8 hours"
+        },
+        "7": {
+          "concentration": false,
+          "duration": "24 hours"
+        },
+        "8": {
+          "concentration": false,
+          "duration": "24 hours"
+        },
+        "9": {
+          "concentration": false,
+          "duration": "Until dispelled"
+        }
+      },
+      "desc": [
       "If you cast this spell using a spell slot of 4th level or higher, the duration is concentration, up to 10 minutes. If you use a spell slot of 5th level or higher, the duration is 8 hours. If you use a spell slot of 7th level or higher, the duration is 24 hours. If you use a 9th level spell slot, the spell lasts until it is dispelled. Using a spell slot of 5th level or higher grants a duration that doesn't require concentration."
-    ],
+    ]},
     "range": "Touch",
     "components": ["V", "S"],
     "ritual": false,
@@ -1306,9 +1344,11 @@
     "desc": [
       "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target can roll a d4 and add the number rolled to the attack roll or saving throw."
     ],
-    "higher_level": [
+    "higher_level": {
+      "extra_target": 1,
+      "desc": [
       "When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st."
-    ],
+    ]},
     "range": "30 feet",
     "components": ["V", "S", "M"],
     "material": "A sprinkling of holy water.",
@@ -1356,9 +1396,11 @@
       "If you target a plant creature or a magical plant, it makes the saving throw with disadvantage, and the spell deals maximum damage to it.",
       "If you target a nonmagical plant that isn't a creature, such as a tree or shrub, it doesn't make a saving throw; it simply withers and dies."
     ],
-    "higher_level": [
+    "higher_level": {
+      "extra_damage": "1d8",
+      "desc": [
       "When you cast this spell using a spell slot of 5th level of higher, the damage increases by 1d8 for each slot level above 4th."
-    ],
+    ]},
     "range": "30 feet",
     "components": ["V", "S"],
     "ritual": false,
@@ -1431,9 +1473,11 @@
     "desc": [
       "You can blind or deafen a foe. Choose one creature that you can see within range to make a constitution saving throw. If it fails, the target is either blinded or deafened (your choice) for the duration. At the end of each of its turns, the target can make a constitution saving throw. On a success, the spell ends."
     ],
-    "higher_level": [
+    "higher_level": {
+      "extra_target": 1,
+      "desc": [
       "When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd."
-    ],
+    ]},
     "range": "30 feet",
     "components": ["V"],
     "ritual": false,
@@ -1580,9 +1624,11 @@
     "desc": [
       "The next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra 2d6 radiant damage to the target, which becomes visible if it's invisible, and the target sheds dim light in a 5-foot radius and can't become invisible until the spell ends."
     ],
-    "higher_level": [
+    "higher_level": {
+      "extra_damage": "1d6",
+      "desc": [
       "When you cast this spell using a spell slot of 3rd level or higher, the extra damage increases by 1d6 for each slot level above 2nd."
-    ],
+    ]},
     "range": "Self",
     "components": ["V"],
     "ritual": false,
@@ -1629,9 +1675,11 @@
       "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.",
       "The fire ignites any flammable objects in the area that aren't being worn or carried."
     ],
-    "higher_level": [
-      "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st."
-    ],
+    "higher_level": {
+      "extra_damage": "1d6",
+      "desc": [
+        "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st."
+    ]},
     "range": "Self",
     "components": ["V", "S"],
     "ritual": false,
@@ -1708,9 +1756,11 @@
       "When you cast the spell, choose a point you can see within range. A bolt of lightning flashes down from the cloud to that point. Each creature within 5 feet of that point must make a dexterity saving throw. A creature takes 3d10 lightning damage on a failed save, or half as much damage on a successful one. On each of your turns until the spell ends, you can use your action to call down lightning in this way again, targeting the same point or a different one.",
       "If you are outdoors in stormy conditions when you cast this spell, the spell gives you control over the existing storm instead of creating a new one. Under such conditions, the spell's damage increases by 1d10."
     ],
-    "higher_level": [
-      "When you cast this spell using a spell slot of 4th or higher level, the damage increases by 1d10 for each slot level above 3rd."
-    ],
+    "higher_level": {
+      "extra_damage": "1d10",
+      "desc": [
+        "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 3rd."
+    ]},
     "range": "120 feet",
     "components": ["V", "S"],
     "ritual": false,
@@ -1823,9 +1873,11 @@
       "You create a bolt of lightning that arcs toward a target of your choice that you can see within range. Three bolts then leap from that target to as many as three other targets, each of which must be within 30 feet of the first target. A target can be a creature or an object and can be targeted by only one of the bolts.",
       "A target must make a dexterity saving throw. The target takes 10d8 lightning damage on a failed save, or half as much damage on a successful one."
     ],
-    "higher_level": [
+    "higher_level": {
+      "extra_target": "1",
+      "desc": [
       "When you cast this spell using a spell slot of 7th level or higher, one additional bolt leaps from the first target to another target for each slot level above 6th."
-    ],
+    ]},
     "range": "150 feet",
     "components": ["V", "S", "M"],
     "material": "A bit of fur; a piece of amber, glass, or a crystal rod; and three silver pins.",
@@ -1878,9 +1930,10 @@
     "desc": [
       "You attempt to charm a humanoid you can see within range. It must make a wisdom saving throw, and does so with advantage if you or your companions are fighting it. If it fails the saving throw, it is charmed by you until the spell ends or until you or your companions do anything harmful to it. The charmed creature regards you as a friendly acquaintance. When the spell ends, the creature knows it was charmed by you."
     ],
-    "higher_level": [
+    "higher_level": { "desc": [
       "When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them."
     ],
+    "extra_target": "1"},
     "range": "30 feet",
     "components": ["V", "S"],
     "ritual": false,
@@ -2003,9 +2056,10 @@
     "desc": [
       "A sphere of negative energy ripples out in a 60-foot radius sphere from a point within range. Each creature in that area must make a constitution saving throw. A target takes 8d6 necrotic damage on a failed save, or half as much damage on a successful one."
     ],
-    "higher_level": [
+    "higher_level": {"desc": [
       "When you cast this spell using a spell slot of 7th level or higher, the damage increases by 2d6 for each slot level above 6th."
     ],
+    "extra_damage": "2d6"},
     "range": "150 feet",
     "components": ["V", "S", "M"],
     "material": "The powder of a crushed black pearl worth at least 500 gp.",
@@ -2154,9 +2208,10 @@
       "When a creature enters the spell's area for the first time on a turn or starts its turn there, that creature must make a constitution saving throw. The creature takes 5d8 poison damage on a failed save, or half as much damage on a successful one. Creatures are affected even if they hold their breath or don't need to breathe.",
       "The fog moves 10 feet away from you at the start of each of your turns, rolling along the surface of the ground. The vapors, being heavier than air, sink to the lowest level of the land, even pouring down openings."
     ],
-    "higher_level": [
+    "higher_level": {"desc": [
       "When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th."
     ],
+  "extra_damage": "1d8"},
     "range": "120 feet",
     "components": ["V", "S"],
     "ritual": false,
@@ -2224,9 +2279,10 @@
       "A dazzling array of flashing, colored light springs from your hand. Roll 6d10; the total is how many hit points of creatures this spell can effect. Creatures in a 15-foot cone originating from you are affected in ascending order of their current hit points (ignoring unconscious creatures and creatures that can't see).",
       "Starting with the creature that has the lowest current hit points, each creature affected by this spell is blinded until the spell ends. Subtract each creature's hit points from the total before moving on to the creature with the next lowest hit points. A creature's hit points must be equal to or less than the remaining total for that creature to be affected."
     ],
-    "higher_level": [
+    "higher_level": {"desc": [
       "When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d10 for each slot level above 1st."
     ],
+  "extra_roll": "2d10"},
     "range": "Self",
     "components": ["V", "S", "M"],
     "material": "A pinch of powder or sand that is colored red, yellow, and blue.",
@@ -2277,9 +2333,9 @@
       "***Grovel.*** The target falls prone and then ends its turn.",
       "***Halt.*** The target doesn't move and takes no actions. A flying creature stays aloft, provided that it is able to do so. If it must move to stay aloft, it flies the minimum distance needed to remain in the air."
     ],
-    "higher_level": [
+    "higher_level": {"desc": [
       "When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them."
-    ],
+    ], "extra_targets": 1},
     "range": "60 feet",
     "components": ["V"],
     "ritual": false,
@@ -2504,9 +2560,9 @@
       "A blast of cold air erupts from your hands. Each creature in a 60-foot cone must make a constitution saving throw. A creature takes 8d8 cold damage on a failed save, or half as much damage on a successful one.",
       "A creature killed by this spell becomes a frozen statue until it thaws."
     ],
-    "higher_level": [
+    "higher_level": {"desc": [
       "When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th."
-    ],
+    ], "extra_damage": "1d8"},
     "range": "Self",
     "components": ["V", "S", "M"],
     "material": "A small crystal or glass cone.",
@@ -2582,9 +2638,9 @@
       "| 9-10 | The creature can act and move normally. |",
       "At the end of each of its turns, an affected target can make a Wisdom saving throw. If it succeeds, this effect ends for that target."
     ],
-    "higher_level": [
-      "When you cast this spell using a spell slot of 5th level or higher, the radius of the sphere increases by 5 feet for each slot level above 4th."
-    ],
+    "higher_level": {"desc": [
+      "When you cast this spell using a spell slot of 6th level or higher, the radius of the sphere increases by 5 feet for each slot level above 5th."
+    ], "extra_aoe": "5 feet"},
     "range": "90 feet",
     "components": ["V", "S", "M"],
     "material": "Three walnut shells.",
