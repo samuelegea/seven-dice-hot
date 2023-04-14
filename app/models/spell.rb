@@ -25,9 +25,9 @@ class Spell < ApplicationRecord
     half: 0,
     none: 1,
     other: 2
-  }, prefix: :dc
+  }, _prefix: :dc
 
-  enum saving_throw: ability_scores, prefix: :st
+  enum saving_throw: ability_scores, _prefix: :st
 
   array_enum component: {
     material: 0,
@@ -42,7 +42,7 @@ class Spell < ApplicationRecord
     day: 3,
     instant: 4,
     until_dispelled: 5
-  }, prefix: :duration
+  }, _prefix: :duration
 
   enum casting_time_unit: {
     action: 0,
@@ -54,7 +54,11 @@ class Spell < ApplicationRecord
     week: 6,
     month: 7,
     year: 8
-  }, prefix: :casting_time
+  }, _prefix: :casting_time
 
-  # TODO: Add ability score aliases for saving throws
+  alias st absc
+
+  def self.st_to_i(args)
+    absc_to_i(args)
+  end
 end
