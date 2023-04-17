@@ -22,6 +22,7 @@ ActiveAdmin.register Proficiency do
     column :skill
     column :item
     column :equipment_category
+    column :ability_score
 
     actions
   end
@@ -37,5 +38,5 @@ ActiveAdmin.register Proficiency do
   filter :skill
   filter :item
   filter :equipment_category
-
+  filter :ability_score
 end

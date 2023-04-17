@@ -128,6 +128,7 @@ def create_proficiencies
       skill: Skill.find_by_name(proficiency.dig('reference', 'name')),
       equipment_category: EquipmentCategory.find_by_name(proficiency.dig('reference', 'name')),
       item: Item.find_by_name(proficiency.dig('reference', 'name')),
+      ability_score: Skill.absc_to_i(proficiency.dig('reference', 'name')),
     )
   end
 end
