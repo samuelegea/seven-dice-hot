@@ -7,6 +7,7 @@ class Race < ApplicationRecord
   has_many :ability_score_increases, as: :source, dependent: :destroy
   has_many :proficiency_sources, as: :source, dependent: :destroy
   has_many :proficiencies, through: :proficiency_sources
-  has_many :proficiency_option_sources, as: :source
-  has_many :proficiency_options, through: :proficiency_option_sources
+  has_many :option_sources, as: :source, dependent: :destroy
+  has_many :options, through: :option_sources
+  has_many :proficiencies, through: :options, source: :optionable, source_type: 'Proficiency', foreign_key: 'optionable_id'
 end

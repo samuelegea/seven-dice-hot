@@ -30,5 +30,9 @@ module AbilityScores
 
       ability_scores.filter { |k, _v| k.upcase.include? attr.upcase }.values.first
     end
+
+    def ability_score=(attribute)
+      self[:ability_score] = self.class.absc_to_i(attribute)
+    end
   end
 end

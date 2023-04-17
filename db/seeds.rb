@@ -100,7 +100,7 @@ def create_skills
     Skill.create(
       name: skill['name'],
       desc: skill['desc']&.join('. ') || '',
-      ability_score: Skill.absc_to_i(skill.dig('ability_score', 'name'))
+      ability_score: skill.dig('ability_score', 'name')
     )
   end
 end
@@ -128,7 +128,7 @@ def create_proficiencies
       skill: Skill.find_by_name(proficiency.dig('reference', 'name')),
       equipment_category: EquipmentCategory.find_by_name(proficiency.dig('reference', 'name')),
       item: Item.find_by_name(proficiency.dig('reference', 'name')),
-      ability_score: Skill.absc_to_i(proficiency.dig('reference', 'name')),
+      ability_score: proficiency.dig('reference', 'name'),
     )
   end
 end
@@ -177,7 +177,7 @@ def create_races
 
     race['ability_bonuses'].each do |ability_bonus|
       r.ability_score_increases.create(
-        ability: AbilityScoreIncrease.absc_to_i(ability_bonus.dig('ability_score', 'name')),
+        ability: ability_bonus.dig('ability_score', 'name'),
         bonus: ability_bonus['bonus']
       )
     end
@@ -214,7 +214,7 @@ def create_subraces
 
     sub_race.dig('ability_bonuses')&.each do |ability_bonus|
       r.ability_score_increases.create(
-        ability: AbilityScoreIncrease.absc_to_i(ability_bonus.dig('ability_score', 'name')),
+        ability: ability_bonus.dig('ability_score', 'name'),
         bonus: ability_bonus['bonus']
       )
     end

@@ -1,41 +1,19 @@
 class Spell < ApplicationRecord
   include AbilityScores
   include Times
-
-  enum aoe_type: [:cone, :cube, :cylinder, :line, :sphere], _prefix: :aoe
-
-  enum school: {
-    abjuration: 0,
-    conjuration: 1,
-    divination: 2,
-    enchantment: 3,
-    evocation: 4,
-    illusion: 5,
-    necromancy: 6,
-    transmutation: 7
-  }
-
-  enum dc_success: {
-    half: 0,
-    none: 1,
-    other: 2
-  }, _prefix: :dc
-
-  enum saving_throw: ability_scores, _prefix: :st
-
-  enum component: [
-    :material,
-    :somatic,
-    :verbal
-  ]
-
   COMPONENTS = { 'V' => 'verbal', 'S' => 'somatic', 'M' => 'material' }.freeze
 
-  enum duration_unit: times, _prefix: :duration
-
+  enum school: [
+    :abjuration, :conjuration, :divination, :enchantment,
+    :evocation, :illusion, :necromancy, :transmutation
+  ]
   enum duration_delimiter: [:exact, :up_to, :until_dispelled, :special, :instantaneous], _prefix: :duration
-
+  enum aoe_type: [:cone, :cube, :cylinder, :line, :sphere], _prefix: :aoe
+  enum dc_success: [:half, :none, :other], _prefix: :dc
+  enum component: [:material, :somatic, :verbal]
+  enum duration_unit: times, _prefix: :duration
   enum casting_time_unit: times, _prefix: :casting_time
+  enum saving_throw: ability_scores, _prefix: :st
 
   alias st absc
 

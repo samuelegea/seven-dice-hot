@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_13_155147) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_17_222722) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,16 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_155147) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
-
-  create_table "create_proficiency_sources", force: :cascade do |t|
-    t.bigint "proficiency_id", null: false
-    t.string "source_type", null: false
-    t.bigint "source_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["proficiency_id"], name: "index_create_proficiency_sources_on_proficiency_id"
-    t.index ["source_type", "source_id"], name: "index_create_proficiency_sources_on_source"
   end
 
   create_table "custom_tables", force: :cascade do |t|
@@ -122,6 +112,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_155147) do
     t.integer "two_handed_damage_type"
   end
 
+  create_table "klass_spells", force: :cascade do |t|
+    t.bigint "klass_id", null: false
+    t.bigint "spell_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["klass_id"], name: "index_klass_spells_on_klass_id"
+    t.index ["spell_id"], name: "index_klass_spells_on_spell_id"
+  end
+
+  create_table "klasses", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.integer "hit_die", default: 6, null: false
+    t.integer "saving_thows", default: [], null: false, array: true
+    t.integer "spellcasting_level"
+    t.integer "spellcasting_ability"
+    t.json "prerequisites", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "language_races", force: :cascade do |t|
     t.bigint "language_id", null: false
     t.bigint "race_id", null: false
@@ -151,6 +161,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_155147) do
     t.index ["variant_of_id"], name: "index_magic_items_on_variant_of_id"
   end
 
+  create_table "option_sources", force: :cascade do |t|
+    t.string "source_type", null: false
+    t.bigint "source_id", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_type", "source_id"], name: "index_option_sources_on_source"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "optionable_type", null: false
+    t.bigint "optionable_id", null: false
+    t.bigint "option_source_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_source_id"], name: "index_options_on_option_source_id"
+    t.index ["optionable_type", "optionable_id"], name: "index_options_on_optionable"
+  end
+
   create_table "proficiencies", force: :cascade do |t|
     t.bigint "skill_id"
     t.bigint "item_id"
@@ -162,25 +191,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_155147) do
     t.index ["equipment_category_id"], name: "index_proficiencies_on_equipment_category_id"
     t.index ["item_id"], name: "index_proficiencies_on_item_id"
     t.index ["skill_id"], name: "index_proficiencies_on_skill_id"
-  end
-
-  create_table "proficiency_option_sources", force: :cascade do |t|
-    t.bigint "proficiency_option_id", null: false
-    t.string "source_type", null: false
-    t.bigint "source_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["proficiency_option_id"], name: "index_proficiency_option_sources_on_proficiency_option_id"
-    t.index ["source_type", "source_id"], name: "index_proficiency_option_sources_on_source"
-  end
-
-  create_table "proficiency_options", force: :cascade do |t|
-    t.string "source_type", null: false
-    t.bigint "source_id", null: false
-    t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["source_type", "source_id"], name: "index_proficiency_options_on_source"
   end
 
   create_table "proficiency_options_proficiency", force: :cascade do |t|
@@ -245,6 +255,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_155147) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "starting_equipments", force: :cascade do |t|
+    t.bigint "klass_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_starting_equipments_on_item_id"
+    t.index ["klass_id"], name: "index_starting_equipments_on_klass_id"
+  end
+
   create_table "traits", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "desc", default: "", null: false
@@ -291,20 +310,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_155147) do
     t.index ["weapon_property_id"], name: "index_weapon_properties_items_on_weapon_property_id"
   end
 
-  add_foreign_key "create_proficiency_sources", "proficiencies"
   add_foreign_key "equipment_categories_items", "equipment_categories"
   add_foreign_key "equipment_categories_items", "items"
   add_foreign_key "equipment_category_magic_items", "equipment_categories"
   add_foreign_key "equipment_category_magic_items", "magic_items"
+  add_foreign_key "klass_spells", "klasses"
+  add_foreign_key "klass_spells", "spells"
   add_foreign_key "language_races", "languages"
   add_foreign_key "language_races", "races"
   add_foreign_key "magic_items", "magic_items", column: "variant_of_id"
+  add_foreign_key "options", "option_sources"
   add_foreign_key "proficiencies", "equipment_categories"
   add_foreign_key "proficiencies", "items"
   add_foreign_key "proficiencies", "skills"
-  add_foreign_key "proficiency_option_sources", "proficiency_options"
   add_foreign_key "proficiency_options_proficiency", "proficiencies"
-  add_foreign_key "proficiency_options_proficiency", "proficiency_options"
   add_foreign_key "proficiency_sources", "proficiencies"
   add_foreign_key "races", "races", column: "parent_id"
   add_foreign_key "traits_races", "races"
