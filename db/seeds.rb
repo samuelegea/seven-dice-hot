@@ -167,19 +167,7 @@ def create_races
     )
 
     race['starting_proficiencies'].each do |proficiency|
-<<<<<<< HEAD
-      if proficiency['index'].include?('skill')
-        race.proficiencies.create(skill: Skill.find_by_name(proficiency['name']))
-        next
-      elsif proficiency['index'].include?('tinkers-tools')
-        race.proficiencies.create(item: Item.find_by_name(proficiency['name']))
-        next
-      end
-
-      race.proficiencies.create(equipment_category: EquipmentCategory.find_by_name(proficiency['name']))
-=======
       r.proficiencies << Proficiency.find_by_name(proficiency['name'])
->>>>>>> 7dc01e5 (feat: get proficiencies to work properly)
     end
 
     race['languages'].each do |language|
@@ -236,6 +224,63 @@ def create_subraces
   end
 end
 
+def create_spells
+  spells = JSON.parse(File.read('db/sources/5e-SRD-Spells.json'))
+
+  spells.each do |spell|
+    next if Spell.find_by_name(spell['name']).present?
+
+    p "Creating spell -> #{spell['name']}"
+
+    Spell.create(
+      name: spell['name'],
+      desc: spell['desc']&.join('. ') || '',
+      school: spell.dig('school', 'name').downcase,
+      components: spell['components'],
+      ritual: spell['ritual'],
+      concentration: spell['concentration'],
+      material: spell['material'] || '',
+      duration_number: get_duration(spell['duration'])[0] || 0,
+      duration_unit: get_duration(spell['duration'])[1],
+      duration_delimiter: get_duration(spell['duration'])[2],
+      casting_time_unit: spell['casting_time']&.split(' ')[1..-1]&.join('_')&.downcase.singularize,
+      casting_time_number: spell['casting_time'].split(' ').first.to_i,
+      level: spell['level'],
+      attack_type_melee: spell['attack_type'] == 'melee',
+      saving_throw: spell.dig('dc', 'dc_type', 'name').nil? ? nil : Spell.st_to_i(spell.dig('dc', 'dc_type', 'name')),
+      dc_success: spell.dig('dc', 'dc_success'),
+      dc_desc: spell.dig('dc', 'desc') || '',
+      aoe_type: spell.dig('area_of_effect', 'type')&.downcase,
+      aoe_size: spell.dig('area_of_effect', 'size'),
+    )
+  end
+end
+
+def get_duration(duration)
+  delimiter = case duration.downcase
+  when /up to/
+    'up_to'
+  when /special/
+    'special'
+  when /instantaneous/
+    'instantaneous'
+  when /until dispelled/
+    'until_dispelled'
+  else
+    'exact'
+  end
+
+  duration = duration.downcase.gsub(/up to|special|instantaneous|until dispelled/, '').strip
+  duration = duration.split(' ')
+
+  return [0, 0, delimiter] if duration.empty?
+
+  unit = duration.last.singularize
+  number = duration.first.to_i
+
+  [number, unit, delimiter]
+end
+
 # --------------------------------------------
 
 create_equipment_categories
@@ -248,6 +293,7 @@ create_proficiencies
 create_traits
 create_races
 create_subraces
+create_spells
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development? && AdminUser.find_by(email: 'admin@example.com').nil?
 

@@ -59,16 +59,12 @@ gem 'sassc-rails'
 
 gem 'foreman'
 
-gem 'array_enum'
-
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 gem 'pry'
 gem 'pry-byebug'
 gem 'pry-rails'
-
-gem "ruby-openai" # <~ OpenAI API wrapper
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

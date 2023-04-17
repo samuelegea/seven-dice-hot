@@ -22,6 +22,8 @@ ActiveAdmin.register Proficiency do
     column :skill
     column :item
     column :equipment_category
+
+    actions
   end
 
   form do |f|

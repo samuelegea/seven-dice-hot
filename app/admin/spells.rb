@@ -14,5 +14,27 @@ ActiveAdmin.register Spell do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  index do
+    selectable_column
+    column :id
+    column 'Name' do |spell|
+      link_to spell.name, admin_spell_path(spell)
+    end
+    column :level
+    column :school
+    column :components
+    column :material
+    column :ritual
+    column :duration
+    column :concentration
+    column :casting_time
+    column 'Melee', :attack_type_melee
+    column :saving_throw
+    column :dc_success
+    column :dc_desc
+    column :aoe_type
+    column :aoe_size
+
+    actions
+  end
 end

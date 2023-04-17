@@ -18,6 +18,8 @@ module AbilityScores
     end
 
     def self.absc_to_i(attr)
+      return nil if attr.nil?
+
       # Get the index of the attribute in the array when it's passed in the format:
       # "strength" or "str" or "STR"
       # "dexterity" or "dex" or "DEX"
