@@ -168,7 +168,7 @@ def create_races
     )
 
     race['starting_proficiencies'].each do |proficiency|
-      r.proficiencies << Proficiency.find_by_name(proficiency['name'])
+      r.proficiency_sources.create! proficiency: Proficiency.find_by_name(proficiency['name'])
     end
 
     race['languages'].each do |language|
@@ -205,7 +205,7 @@ def create_subraces
     )
 
     sub_race.dig('starting_proficiencies').each do |proficiency|
-      r.proficiencies.create(equipment_category: EquipmentCategory.find_by_name(proficiency['name']))
+      r.proficiency_sources.create! proficiency: Proficiency.find_by_name(proficiency['name'])
     end
 
     sub_race.dig('languages')&.each do |language|
