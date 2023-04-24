@@ -282,6 +282,38 @@ def get_duration(duration)
   [number, unit, delimiter]
 end
 
+def create_classes
+  classes = JSON.parse(File.read('db/sources/5e-SRD-Classes.json'))
+
+  classes.each do |class_|
+    next if Class_.find_by_name(class_['name']).present?
+
+    p "Creating class -> #{class_['name']}"
+
+    c = Class_.create(
+      name: class_['name'],
+      desc: class_['desc']&.join('. ') || '',
+      hit_die: class_['hit_die'],
+      saving_throws: class_['saving_throws']&.map { |st| st['name'] },
+      starting_equipment: class_['starting_equipment']&.map { |se| se['item']['name'] },
+      starting_equipment_options: class_['starting_equipment_options']&.map { |seo| seo['from'].map { |f| f['item']['name'] } },
+      class_levels: class_['class_levels']&.map { |cl| cl['class_specific'] },
+      proficiencies: class_['proficiencies']&.map { |p| p['name'] },
+      proficiencies_choices: class_['proficiency_choices']&.map { |pc| pc['from'].map { |f| f['name'] } },
+      spellcasting: class_['spellcasting'],
+      spellcasting_ability: class_['spellcasting_ability']&.dig('name'),
+      spellcasting_desc: class_['spellcasting_desc'] || '',
+      spellcasting_level: class_['spellcasting_level'],
+      spellcasting_spell_list: class_['spellcasting_spell_list']&.dig('name'),
+      subclasses: class_['subclasses']&.map { |sc| sc['name'] },
+    )
+
+    class_['subclasses'].each do |subclass|
+      c.subclasses << Subclass.find_by_name(subclass['name'])
+    end
+  end
+end
+
 # --------------------------------------------
 
 create_equipment_categories
@@ -295,6 +327,7 @@ create_traits
 create_races
 create_subraces
 create_spells
+create_classes
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development? && AdminUser.find_by(email: 'admin@example.com').nil?
 
